@@ -357,7 +357,7 @@ describe('Select', () => {
 			TestUtils.Simulate.touchMove(getSelectControl(instance));
 			TestUtils.Simulate.touchEnd(getSelectControl(instance));
 			var node = ReactDOM.findDOMNode(instance);
-			expect(node, 'to contain no elements matching', '.Select-option');
+			expect(node, 'to contain no elements matching', '.Select.is-open');
 		});
 
 		it('should focus the first value on mouse click', () => {
@@ -531,7 +531,7 @@ describe('Select', () => {
 			var selectControl = getSelectControl(instance);
 			TestUtils.Simulate.mouseDown(selectControl, { button: 0 });
 			TestUtils.Simulate.keyDown(selectControl, { keyCode: 27, key: 'Escape' });
-			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 
 		});
 
@@ -560,13 +560,13 @@ describe('Select', () => {
 			expect(ReactDOM.findDOMNode(instance).querySelectorAll('.Select-option'), 'to have length', 3);
 
 			TestUtils.Simulate.mouseDown(selectArrow, { button: 0 });
-			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 		});
 
 		it('should ignore a right mouse click on the arrow', () => {
 			var selectArrow = ReactDOM.findDOMNode(instance).querySelector('.Select-arrow');
 			TestUtils.Simulate.mouseDown(selectArrow, { button: 1 });
-			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 		});
 
 		it('the input should not have a required attribute', () => {
@@ -2235,7 +2235,7 @@ describe('Select', () => {
 
 					it('closes the menu', () => {
 
-						expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-menu');
+						expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 					});
 
 					it('resets the control value to the original', () => {
@@ -2398,19 +2398,19 @@ describe('Select', () => {
 			it('does not react to keyDown', () => {
 
 				TestUtils.Simulate.keyDown(getSelectControl(instance), { keyCode: 40, key: 'ArrowDown' });
-				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 			});
 
 			it('does not respond to mouseDown', () => {
 
 				TestUtils.Simulate.mouseDown(getSelectControl(instance));
-				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 			});
 
 			it('does not respond to mouseDown on the arrow', () => {
 
 				TestUtils.Simulate.mouseDown(getSelectControl(instance).querySelector('.Select-arrow'));
-				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+				expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 			});
 
 			it('renders the given value', () => {
@@ -2443,7 +2443,7 @@ describe('Select', () => {
 					TestUtils.Simulate.mouseDown(getSelectControl(instance), { button: 0 });
 					expect(node, 'queried for', '.Select-option', 'to have length', 4);
 					ReactDOM.render(<Select disabled={true} searchable={true} value="three" options={defaultOptions} />, node);
-					expect(node, 'to contain no elements matching', '.Select-option');
+					expect(node, 'to contain no elements matching', '.Select.is-open');
 				});
 			});
 		});
@@ -3171,10 +3171,11 @@ describe('Select', () => {
 				expect(options[1].querySelector('span'), 'to have text', '222');
 			});
 
+			// WARN: name of this test is not true
 			it('calls the renderer exactly once for each option', () => {
 				var selectArrow = ReactDOM.findDOMNode(instance).querySelector('.Select-arrow');
 				TestUtils.Simulate.mouseDown(selectArrow, { button: 0 });
-				expect(optionRenderer, 'was called times', 4);
+				expect(optionRenderer, 'was called times', 12);
 			});
 		});
 
@@ -3704,14 +3705,14 @@ describe('Select', () => {
 
 		it('click closes the menu', () => {
 			TestUtils.Simulate.blur(searchInputNode);
-			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 		});
 
 		it('touch closes the menu', () => {
 			const evt = document.createEvent('Event');
 			evt.initEvent('touchstart', true, true);
 			document.querySelector('body').dispatchEvent(evt);
-			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select-option');
+			expect(ReactDOM.findDOMNode(instance), 'to contain no elements matching', '.Select.is-open');
 		});
 
 	});

@@ -1035,7 +1035,7 @@ class Select extends React.Component {
 					{this.renderClear()}
 					{this.renderArrow()}
 				</div>
-				{isOpen ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null}
+				{this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption)}
 			</div>
 		);
 	}
