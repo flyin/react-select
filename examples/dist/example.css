@@ -63,6 +63,10 @@
   border-color: transparent transparent #999;
   border-width: 0 5px 5px;
 }
+.is-open > .Select-menu-outer {
+  opacity: 1;
+  pointer-events: auto;
+}
 .is-searchable.is-focused:not(.is-open) > .Select-control {
   cursor: text;
 }
@@ -245,6 +249,9 @@
   width: 100%;
   z-index: 1;
   -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
 .Select-menu {
   max-height: 198px;

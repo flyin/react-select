@@ -66,7 +66,7 @@ class Option extends React.Component {
 			this.props.onFocus(this.props.option, event);
 		}
 	}
-	
+
 	render () {
 		var { option, instancePrefix, optionIndex } = this.props;
 		var className = classNames(this.props.className, option.className);
