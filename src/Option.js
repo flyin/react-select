@@ -12,6 +12,7 @@ class Option extends React.Component {
 		this.handleMouseMove = this.handleMouseMove.bind(this);
 		this.handleTouchStart = this.handleTouchStart.bind(this);
 		this.handleTouchEnd = this.handleTouchEnd.bind(this);
+		this.handleTouchMove = this.handleTouchMove.bind(this);
 		this.onFocus = this.onFocus.bind(this);
 	}
 
@@ -109,4 +110,4 @@ Option.propTypes = {
 	optionIndex: PropTypes.number,           // index of the option, used to generate unique ids for aria
 };
 
-module.exports = Option;
+export default Option;
